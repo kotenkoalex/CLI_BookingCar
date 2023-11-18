@@ -1,20 +1,17 @@
 package com.kotenko.cli.booking;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CarBookingDao {
-    private final static List<CarBooking> carBookings;
+    private final static CarBooking[] carBookings;
 
     static {
-        carBookings = new ArrayList<>();
+        carBookings = new CarBooking[5];
     }
 
-    public List<CarBooking> getCarBookings() {
+    public CarBooking[] getCarBookings() {
         return carBookings;
     }
 
     public void book(CarBooking carBooking) {
-        carBookings.add(carBooking);
+        //TODO
     }
 }
