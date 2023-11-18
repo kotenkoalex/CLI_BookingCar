@@ -1,7 +1,7 @@
 package com.kotenko.cli;
 
-import com.kotenko.cli.car.CarBookingDao;
-import com.kotenko.cli.car.CarBookingService;
+import com.kotenko.cli.booking.CarBookingDao;
+import com.kotenko.cli.booking.CarBookingService;
 import com.kotenko.cli.car.CarDao;
 import com.kotenko.cli.car.CarService;
 import com.kotenko.cli.user.UserArrayDataAccessService;

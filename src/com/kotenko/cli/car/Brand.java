@@ -1,4 +1,4 @@
 package com.kotenko.cli.car;
 
-public class CarBookingDao {
+public enum Brand {
 }
