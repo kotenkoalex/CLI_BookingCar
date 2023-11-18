@@ -9,6 +9,7 @@ import com.kotenko.cli.user.User;
 import com.kotenko.cli.user.UserService;
 
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         UserService userService = new UserService();
@@ -23,10 +24,10 @@ public class Main {
             switch (option) {
                 case 1 -> bookCar();
                 case 2 -> viewAllUserBookedCars();
-                case 3 -> viewAllBookings(carBookingService.getCarBookings());
-                case 4 -> viewAvailableCars(carService.getCars());
-                case 5 -> viewAvailableElectricCars(carService.getCars());
-                case 6 -> viewAllUsers(userService.getUsers());
+                case 3 -> viewAllBookings(carBookingService);
+                case 4 -> viewAvailableCars(carBookingService);
+                case 5 -> viewAvailableElectricCars(carBookingService);
+                case 6 -> viewAllUsers(userService);
                 case 7 -> {
                     System.out.println("Good Bye");
                     isActive = false;
@@ -44,31 +45,33 @@ public class Main {
         System.out.println("2 View All User Booked Cars");
     }
 
-    private static void viewAllBookings(CarBooking[] carBookings) {
-        for (CarBooking carBooking : carBookings) {
-            System.out.println(carBooking);
-        }
-        System.out.println();
-    }
-
-    private static void viewAvailableCars(Car[] cars) {
-        for (Car car : cars) {
-            System.out.println(car);
-        }
-        System.out.println();
-    }
-
-    private static void viewAvailableElectricCars(Car[] cars) {
-        for (Car car : cars) {
-            if (car.getEngine() == Engine.ELECTRIC) {
-                System.out.println(car);
+    private static void viewAllBookings(CarBookingService carBookings) {
+        for (CarBooking carBooking : carBookings.getCarBookings()) {
+            if (carBooking != null) {
+                System.out.println(carBooking);
             }
         }
         System.out.println();
     }
 
-    private static void viewAllUsers(User[] users) {
-        for (User user : users) {
+    private static void viewAvailableCars(CarBookingService carBookings) {
+        for (Car availableCar : carBookings.getAvailableCars()) {
+            System.out.println(availableCar);
+        }
+        System.out.println();
+    }
+
+    private static void viewAvailableElectricCars(CarBookingService carBookings) {
+        for (Car availableCar : carBookings.getAvailableCars()) {
+            if (availableCar.getEngine() == Engine.ELECTRIC) {
+                System.out.println(availableCar);
+            }
+        }
+        System.out.println();
+    }
+
+    private static void viewAllUsers(UserService users) {
+        for (User user : users.getUsers()) {
             System.out.println(user);
         }
         System.out.println();
