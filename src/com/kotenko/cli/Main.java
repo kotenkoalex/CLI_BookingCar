@@ -22,8 +22,8 @@ public class Main {
             showOptions();
             int option = scanner.nextInt();
             switch (option) {
-                case 1 -> bookCar();
-                case 2 -> viewAllUserBookedCars();
+                case 1 -> bookCar(userService, carService, carBookingService);
+                case 2 -> viewAllUserBookedCars(carBookingService);
                 case 3 -> viewAllBookings(carBookingService);
                 case 4 -> viewAvailableCars(carBookingService);
                 case 5 -> viewAvailableElectricCars(carBookingService);
@@ -37,12 +37,34 @@ public class Main {
         }
     }
 
-    private static void bookCar() {
-        System.out.println("1 Book Car");
+    private static void bookCar(UserService userService, CarService carService, CarBookingService carBookingService) {
+        Scanner scanner = new Scanner(System.in);
+        viewAvailableCars(carBookingService);
+        String carId = scanner.nextLine();
+        viewAllUsers(userService);
+        String userId = scanner.nextLine();
+
+        CarBooking carBooking;
+        try {
+            carBooking = carBookingService.bookCar(
+                    userService.getUserById(userId),
+                    carService.getCarById(carId)
+            );
+            System.out.println("Car has successfully booked");
+            System.out.println(carBooking);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Incorrect id, try again");
+        }
+        System.out.println();
     }
 
-    private static void viewAllUserBookedCars() {
-        System.out.println("2 View All User Booked Cars");
+    private static void viewAllUserBookedCars(CarBookingService carBookingService) {
+        for (User user : carBookingService.getAllUserBookedCars()) {
+            if (user != null) {
+                System.out.println(user);
+            }
+        }
+        System.out.println();
     }
 
     private static void viewAllBookings(CarBookingService carBookings) {

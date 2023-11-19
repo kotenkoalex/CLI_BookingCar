@@ -13,9 +13,9 @@ public class UserService {
         return userDao.getUsers();
     }
 
-    public User getUserById(UUID id) {
-        for (User user : getUsers()) {
-            if (user.getId().equals(id)) {
+    public User getUserById(String userId) throws IllegalArgumentException {
+        for (User user : this.getUsers()) {
+            if (user.getId().equals(UUID.fromString(userId))) {
                 return user;
             }
         }

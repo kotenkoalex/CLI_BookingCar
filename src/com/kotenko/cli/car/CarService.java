@@ -1,5 +1,7 @@
 package com.kotenko.cli.car;
 
+import java.util.UUID;
+
 public class CarService {
     private final CarDao carDao;
 
@@ -9,5 +11,14 @@ public class CarService {
 
     public Car[] getCars() {
         return carDao.getCars();
+    }
+
+    public Car getCarById(String carId) throws IllegalArgumentException {
+        for (Car car : this.getCars()) {
+            if (car.getId().equals(UUID.fromString(carId))) {
+                return car;
+            }
+        }
+        return null;
     }
 }

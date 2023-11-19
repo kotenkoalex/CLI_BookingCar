@@ -1,16 +1,13 @@
 package com.kotenko.cli.booking;
 
+import java.util.Arrays;
+
 public class CarBookingDao {
-    private final static CarBooking[] carBookings;
+    private static CarBooking[] carBookings;
+    private static int nextIndex = 0;
 
     static {
         carBookings = new CarBooking[5];
-//test data
-//        carBookings[0] = new CarBooking(
-//                UUID.fromString("114b9220-a47a-45a7-a33b-7182ee0dc30e"),
-//                new User(UUID.fromString("114b9220-a47a-45a7-a33b-7182ee0dc30e"), "name"),
-//                new Car(UUID.fromString("124b9220-a47a-45a7-a33b-7182ee0dc30e"), Engine.PETROL, Brand.MAZDA)
-//                ,LocalDateTime.now());
     }
 
     public CarBooking[] getCarBookings() {
@@ -18,6 +15,9 @@ public class CarBookingDao {
     }
 
     public void book(CarBooking carBooking) {
-        //TODO
+        if (carBookings.length == nextIndex) {
+            carBookings = Arrays.copyOf(carBookings, carBookings.length * 2);
+        }
+        carBookings[nextIndex++] = carBooking;
     }
 }
