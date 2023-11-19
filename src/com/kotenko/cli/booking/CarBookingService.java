@@ -4,6 +4,7 @@ import com.kotenko.cli.car.Car;
 import com.kotenko.cli.car.CarService;
 import com.kotenko.cli.user.User;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
@@ -17,8 +18,13 @@ public class CarBookingService {
         this.carService = carService;
     }
 
-    public UUID bookCar(User user, String regNumber) {
-        //TODO
+    public CarBooking bookCar(User user, Car car) {
+        CarBooking carBooking;
+        if (user != null && car != null) {
+            carBooking = new CarBooking(UUID.randomUUID(), user, car, LocalDateTime.now());
+            carBookingDao.book(carBooking);
+            return carBooking;
+        }
         return null;
     }
 
@@ -52,5 +58,14 @@ public class CarBookingService {
             }
         }
         return false;
+    }
+
+    public User[] getAllUserBookedCars() {
+        return Arrays
+                .stream(carBookingDao.getCarBookings())
+                .filter(Objects::nonNull)
+                .map(CarBooking::getUser)
+                .distinct()
+                .toArray(User[]::new);
     }
 }

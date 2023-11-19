@@ -7,8 +7,8 @@ public class UserDao {
 
     static {
         users = new User[]{
-                new User(UUID.fromString("1e4b9220-a47a-45a7-a33b-7182ee0dc30e"), "Alex"),
-                new User(UUID.fromString("2e4b9220-a47a-45a7-a33b-7182ee0dc30e"), "Mark"),
+                new User(UUID.randomUUID(), "Alex"),
+                new User(UUID.randomUUID(), "Mark"),
         };
     }
 
