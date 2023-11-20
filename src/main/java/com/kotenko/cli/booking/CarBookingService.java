@@ -1,8 +1,8 @@
-package com.kotenko.cli.booking;
+package main.java.com.kotenko.cli.booking;
 
-import com.kotenko.cli.car.Car;
-import com.kotenko.cli.car.CarService;
-import com.kotenko.cli.user.User;
+import main.java.com.kotenko.cli.car.Car;
+import main.java.com.kotenko.cli.car.CarService;
+import main.java.com.kotenko.cli.user.User;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -10,11 +10,11 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class CarBookingService {
-    private final CarBookingDao carBookingDao;
+    private final CarBookingArrayDataAccessService carBookingArrayDataAccessService;
     private final CarService carService;
 
     public CarBookingService(CarService carService) {
-        this.carBookingDao = new CarBookingDao();
+        this.carBookingArrayDataAccessService = new CarBookingArrayDataAccessService();
         this.carService = carService;
     }
 
@@ -22,7 +22,7 @@ public class CarBookingService {
         CarBooking carBooking;
         if (user != null && car != null) {
             carBooking = new CarBooking(UUID.randomUUID(), user, car, LocalDateTime.now());
-            carBookingDao.book(carBooking);
+            carBookingArrayDataAccessService.book(carBooking);
             return carBooking;
         }
         return null;
@@ -30,18 +30,18 @@ public class CarBookingService {
 
     public CarBooking[] getCarBookings() {
         CarBooking[] carBookings = Arrays
-                .stream(carBookingDao.getCarBookings())
+                .stream(carBookingArrayDataAccessService.getCarBookings())
                 .filter(Objects::nonNull)
                 .toArray(CarBooking[]::new);
         if (carBookings.length == 0) {
             System.out.println("No bookings available");
         }
-        return carBookingDao.getCarBookings();
+        return carBookingArrayDataAccessService.getCarBookings();
     }
 
     public Car[] getAvailableCars() {
         UUID[] bookedCarIds = Arrays
-                .stream(carBookingDao.getCarBookings())
+                .stream(carBookingArrayDataAccessService.getCarBookings())
                 .map(it -> it != null ? it.getCar().getId() : null)
                 .filter(Objects::nonNull)
                 .toArray(UUID[]::new);
@@ -62,7 +62,7 @@ public class CarBookingService {
 
     public User[] getAllUserBookedCars() {
         return Arrays
-                .stream(carBookingDao.getCarBookings())
+                .stream(carBookingArrayDataAccessService.getCarBookings())
                 .filter(Objects::nonNull)
                 .map(CarBooking::getUser)
                 .distinct()

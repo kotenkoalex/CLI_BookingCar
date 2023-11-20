@@ -1,8 +1,8 @@
-package com.kotenko.cli.car;
+package main.java.com.kotenko.cli.car;
 
 import java.util.UUID;
 
-public class CarDao {
+public class CarArrayDataAccessService implements CarDao{
     private final static Car[] cars;
 
     static {
@@ -15,6 +15,7 @@ public class CarDao {
         };
     }
 
+    @Override
     public Car[] getCars(){
         return cars;
     }

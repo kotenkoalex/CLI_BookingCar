@@ -1,16 +1,16 @@
-package com.kotenko.cli.car;
+package main.java.com.kotenko.cli.car;
 
 import java.util.UUID;
 
 public class CarService {
-    private final CarDao carDao;
+    private final CarArrayDataAccessService carArrayDataAccessService;
 
     public CarService() {
-        this.carDao = new CarDao();
+        this.carArrayDataAccessService = new CarArrayDataAccessService();
     }
 
     public Car[] getCars() {
-        return carDao.getCars();
+        return carArrayDataAccessService.getCars();
     }
 
     public Car getCarById(String carId) throws IllegalArgumentException {
