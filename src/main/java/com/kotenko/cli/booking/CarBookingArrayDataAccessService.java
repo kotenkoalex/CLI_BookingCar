@@ -1,8 +1,8 @@
-package com.kotenko.cli.booking;
+package main.java.com.kotenko.cli.booking;
 
 import java.util.Arrays;
 
-public class CarBookingDao {
+public class CarBookingArrayDataAccessService implements CarBookingDao{
     private static CarBooking[] carBookings;
     private static int nextIndex = 0;
 
@@ -10,6 +10,7 @@ public class CarBookingDao {
         carBookings = new CarBooking[5];
     }
 
+    @Override
     public CarBooking[] getCarBookings() {
         return carBookings;
     }

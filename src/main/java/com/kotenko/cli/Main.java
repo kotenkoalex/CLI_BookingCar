@@ -1,12 +1,12 @@
-package com.kotenko.cli;
+package main.java.com.kotenko.cli;
 
-import com.kotenko.cli.booking.CarBooking;
-import com.kotenko.cli.booking.CarBookingService;
-import com.kotenko.cli.car.Car;
-import com.kotenko.cli.car.CarService;
-import com.kotenko.cli.car.Engine;
-import com.kotenko.cli.user.User;
-import com.kotenko.cli.user.UserService;
+import main.java.com.kotenko.cli.booking.CarBooking;
+import main.java.com.kotenko.cli.booking.CarBookingService;
+import main.java.com.kotenko.cli.car.Car;
+import main.java.com.kotenko.cli.car.CarService;
+import main.java.com.kotenko.cli.car.Engine;
+import main.java.com.kotenko.cli.user.User;
+import main.java.com.kotenko.cli.user.UserService;
 
 import java.util.Scanner;
 
