@@ -15,11 +15,9 @@ public class CarService {
     }
 
     public Car getCarById(String carId) throws IllegalArgumentException {
-        for (Car car : this.getCars()) {
-            if (car.getId().equals(UUID.fromString(carId))) {
-                return car;
-            }
-        }
-        return null;
+        return this.getCars().stream()
+                .filter(car -> car.getId().equals(UUID.fromString(carId)))
+                .findFirst()
+                .orElse(null);
     }
 }

@@ -70,11 +70,10 @@ public class Main {
     private static void viewAllUserBookedCars(CarBookingService carBookingService) {
         User[] allUserBookedCars = carBookingService.getAllUserBookedCars();
         if (containsNotNullElement(allUserBookedCars)) {
-            for (User user : allUserBookedCars) {
-                if (user != null) {
-                    System.out.println(user);
-                }
-            }
+            Arrays
+                    .stream(allUserBookedCars)
+                    .filter(Objects::nonNull)
+                    .forEach(System.out::println);
         } else {
             System.out.println("No users booked car");
         }
@@ -82,31 +81,31 @@ public class Main {
     }
 
     private static boolean containsNotNullElement(User[] allUserBookedCars) {
-        return Arrays.stream(allUserBookedCars).anyMatch(Objects::nonNull);
+        return Arrays
+                .stream(allUserBookedCars)
+                .anyMatch(Objects::nonNull);
     }
 
     private static void viewAllBookings(CarBookingService carBookings) {
-        for (CarBooking carBooking : carBookings.getCarBookings()) {
-            if (carBooking != null) {
-                System.out.println(carBooking);
-            }
-        }
+        Arrays
+                .stream(carBookings.getCarBookings())
+                .filter(Objects::nonNull)
+                .forEach(System.out::println);
         System.out.println();
     }
 
     private static void viewAvailableCars(CarBookingService carBookings) {
-        for (Car availableCar : carBookings.getAvailableCars()) {
-            System.out.println(availableCar);
-        }
+        Arrays
+                .stream(carBookings.getAvailableCars())
+                .forEach(System.out::println);
         System.out.println();
     }
 
     private static void viewAvailableElectricCars(CarBookingService carBookings) {
-        for (Car availableCar : carBookings.getAvailableCars()) {
-            if (availableCar.getEngine() == Engine.ELECTRIC) {
-                System.out.println(availableCar);
-            }
-        }
+        Arrays
+                .stream(carBookings.getAvailableCars())
+                .filter(availableCar -> availableCar.getEngine() == Engine.ELECTRIC)
+                .forEach(System.out::println);
         System.out.println();
     }
 

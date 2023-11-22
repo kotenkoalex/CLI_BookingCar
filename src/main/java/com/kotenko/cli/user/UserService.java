@@ -15,11 +15,9 @@ public class UserService {
     }
 
     public User getUserById(String userId) throws IllegalArgumentException {
-        for (User user : this.getUsers()) {
-            if (user.getId().equals(UUID.fromString(userId))) {
-                return user;
-            }
-        }
-        return null;
+        return this.getUsers().stream()
+                .filter(user -> user.getId().equals(UUID.fromString(userId)))
+                .findFirst()
+                .orElse(null);
     }
 }
