@@ -1,24 +1,21 @@
 package main.java.com.kotenko.cli.booking;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
-public class CarBookingArrayDataAccessService implements CarBookingDao{
-    private static CarBooking[] carBookings;
-    private static int nextIndex = 0;
+public class CarBookingArrayDataAccessService implements CarBookingDao {
+    private static final List<CarBooking> carBookings;
 
     static {
-        carBookings = new CarBooking[5];
+        carBookings = new ArrayList<>();
     }
 
     @Override
-    public CarBooking[] getCarBookings() {
+    public List<CarBooking> getCarBookings() {
         return carBookings;
     }
 
     public void book(CarBooking carBooking) {
-        if (carBookings.length == nextIndex) {
-            carBookings = Arrays.copyOf(carBookings, carBookings.length * 2);
-        }
-        carBookings[nextIndex++] = carBooking;
+        carBookings.add(carBooking);
     }
 }

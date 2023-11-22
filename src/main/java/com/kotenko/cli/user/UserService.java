@@ -1,15 +1,16 @@
 package main.java.com.kotenko.cli.user;
 
+import java.util.List;
 import java.util.UUID;
 
 public class UserService {
     private final UserArrayDataAccessService userArrayDataAccessService;
 
-    public UserService() {
-        this.userArrayDataAccessService = new UserArrayDataAccessService();
+    public UserService(UserArrayDataAccessService userArrayDataAccessService) {
+        this.userArrayDataAccessService = userArrayDataAccessService;
     }
 
-    public User[] getUsers() {
+    public List<User> getUsers() {
         return userArrayDataAccessService.getUsers();
     }
 

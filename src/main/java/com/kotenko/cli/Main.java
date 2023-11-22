@@ -1,21 +1,30 @@
 package main.java.com.kotenko.cli;
 
 import main.java.com.kotenko.cli.booking.CarBooking;
+import main.java.com.kotenko.cli.booking.CarBookingArrayDataAccessService;
 import main.java.com.kotenko.cli.booking.CarBookingService;
 import main.java.com.kotenko.cli.car.Car;
+import main.java.com.kotenko.cli.car.CarArrayDataAccessService;
 import main.java.com.kotenko.cli.car.CarService;
 import main.java.com.kotenko.cli.car.Engine;
 import main.java.com.kotenko.cli.user.User;
+import main.java.com.kotenko.cli.user.UserArrayDataAccessService;
+import main.java.com.kotenko.cli.user.UserReaderFromFile;
 import main.java.com.kotenko.cli.user.UserService;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        UserService userService = new UserService();
-        CarService carService = new CarService();
-        CarBookingService carBookingService = new CarBookingService(carService);
-
+        String path = "src/resources/users.csv";
+        UserArrayDataAccessService users = new UserArrayDataAccessService(new UserReaderFromFile(), path);
+        UserService userService = new UserService(users);
+        CarArrayDataAccessService cars = new CarArrayDataAccessService();
+        CarService carService = new CarService(cars);
+        CarBookingArrayDataAccessService carsBooking = new CarBookingArrayDataAccessService();
+        CarBookingService carBookingService = new CarBookingService(carsBooking, carService);
         boolean isActive = true;
         Scanner scanner = new Scanner(System.in);
         while (isActive) {
@@ -59,12 +68,21 @@ public class Main {
     }
 
     private static void viewAllUserBookedCars(CarBookingService carBookingService) {
-        for (User user : carBookingService.getAllUserBookedCars()) {
-            if (user != null) {
-                System.out.println(user);
+        User[] allUserBookedCars = carBookingService.getAllUserBookedCars();
+        if (containsNotNullElement(allUserBookedCars)) {
+            for (User user : allUserBookedCars) {
+                if (user != null) {
+                    System.out.println(user);
+                }
             }
+        } else {
+            System.out.println("No users booked car");
         }
         System.out.println();
+    }
+
+    private static boolean containsNotNullElement(User[] allUserBookedCars) {
+        return Arrays.stream(allUserBookedCars).anyMatch(Objects::nonNull);
     }
 
     private static void viewAllBookings(CarBookingService carBookings) {

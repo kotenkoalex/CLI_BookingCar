@@ -1,15 +1,16 @@
 package main.java.com.kotenko.cli.car;
 
+import java.util.List;
 import java.util.UUID;
 
 public class CarService {
     private final CarArrayDataAccessService carArrayDataAccessService;
 
-    public CarService() {
-        this.carArrayDataAccessService = new CarArrayDataAccessService();
+    public CarService(CarArrayDataAccessService carArrayDataAccessService) {
+        this.carArrayDataAccessService = carArrayDataAccessService;
     }
 
-    public Car[] getCars() {
+    public List<Car> getCars() {
         return carArrayDataAccessService.getCars();
     }
 
