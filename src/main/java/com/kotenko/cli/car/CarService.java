@@ -1,24 +1,23 @@
 package main.java.com.kotenko.cli.car;
 
+import java.util.List;
 import java.util.UUID;
 
 public class CarService {
     private final CarArrayDataAccessService carArrayDataAccessService;
 
-    public CarService() {
-        this.carArrayDataAccessService = new CarArrayDataAccessService();
+    public CarService(CarArrayDataAccessService carArrayDataAccessService) {
+        this.carArrayDataAccessService = carArrayDataAccessService;
     }
 
-    public Car[] getCars() {
+    public List<Car> getCars() {
         return carArrayDataAccessService.getCars();
     }
 
     public Car getCarById(String carId) throws IllegalArgumentException {
-        for (Car car : this.getCars()) {
-            if (car.getId().equals(UUID.fromString(carId))) {
-                return car;
-            }
-        }
-        return null;
+        return this.getCars().stream()
+                .filter(car -> car.getId().equals(UUID.fromString(carId)))
+                .findFirst()
+                .orElse(null);
     }
 }
