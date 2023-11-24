@@ -1,4 +1,4 @@
-package main.java.com.kotenko.cli.booking;
+package com.kotenko.cli.booking;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,7 @@ public class CarBookingArrayDataAccessService implements CarBookingDao {
         return carBookings;
     }
 
+    @Override
     public void book(CarBooking carBooking) {
         carBookings.add(carBooking);
     }

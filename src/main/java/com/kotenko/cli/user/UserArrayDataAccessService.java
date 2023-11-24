@@ -1,12 +1,13 @@
-package main.java.com.kotenko.cli.user;
+package com.kotenko.cli.user;
 
+import java.io.File;
 import java.util.List;
 
 public class UserArrayDataAccessService implements UserDao {
     private final List<User> users;
 
-    public UserArrayDataAccessService(IUserReader IUserReader, String path) {
-        users = IUserReader.readUsers(path);
+    public UserArrayDataAccessService(IUserReader IUserReader, File file) {
+        users = IUserReader.readUsers(file);
     }
 
     @Override

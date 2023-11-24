@@ -1,4 +1,4 @@
-package main.java.com.kotenko.cli.car;
+package com.kotenko.cli.car;
 
 import java.util.List;
 
