@@ -1,4 +1,4 @@
-package main.java.com.kotenko.cli.user;
+package com.kotenko.cli.user;
 
 import java.util.UUID;
 

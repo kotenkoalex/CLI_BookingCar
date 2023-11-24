@@ -1,16 +1,14 @@
-package main.java.com.kotenko.cli;
+package com.kotenko.cli;
 
-import main.java.com.kotenko.cli.booking.CarBooking;
-import main.java.com.kotenko.cli.booking.CarBookingArrayDataAccessService;
-import main.java.com.kotenko.cli.booking.CarBookingService;
-import main.java.com.kotenko.cli.car.Car;
-import main.java.com.kotenko.cli.car.CarArrayDataAccessService;
-import main.java.com.kotenko.cli.car.CarService;
-import main.java.com.kotenko.cli.car.Engine;
-import main.java.com.kotenko.cli.user.User;
-import main.java.com.kotenko.cli.user.UserArrayDataAccessService;
-import main.java.com.kotenko.cli.user.UserReaderFromFile;
-import main.java.com.kotenko.cli.user.UserService;
+import com.kotenko.cli.booking.CarBooking;
+import com.kotenko.cli.booking.CarBookingArrayDataAccessService;
+import com.kotenko.cli.booking.CarBookingDao;
+import com.kotenko.cli.booking.CarBookingService;
+import com.kotenko.cli.car.CarArrayDataAccessService;
+import com.kotenko.cli.car.CarDao;
+import com.kotenko.cli.car.CarService;
+import com.kotenko.cli.car.Engine;
+import com.kotenko.cli.user.*;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -18,12 +16,13 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String path = "src/resources/users.csv";
-        UserArrayDataAccessService users = new UserArrayDataAccessService(new UserReaderFromFile(), path);
+//        File file = new File(Main.class.getClassLoader().getResource("users.csv").getPath());
+//        UserDao users = new UserArrayDataAccessService(new UserReaderFromFile(), file);
+        UserDao users = new UserFakerDataAccessService();
         UserService userService = new UserService(users);
-        CarArrayDataAccessService cars = new CarArrayDataAccessService();
+        CarDao cars = new CarArrayDataAccessService();
         CarService carService = new CarService(cars);
-        CarBookingArrayDataAccessService carsBooking = new CarBookingArrayDataAccessService();
+        CarBookingDao carsBooking = new CarBookingArrayDataAccessService();
         CarBookingService carBookingService = new CarBookingService(carsBooking, carService);
         boolean isActive = true;
         Scanner scanner = new Scanner(System.in);

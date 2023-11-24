@@ -1,17 +1,17 @@
-package main.java.com.kotenko.cli.user;
+package com.kotenko.cli.user;
 
 import java.util.List;
 import java.util.UUID;
 
 public class UserService {
-    private final UserArrayDataAccessService userArrayDataAccessService;
+    private final UserDao userDao;
 
-    public UserService(UserArrayDataAccessService userArrayDataAccessService) {
-        this.userArrayDataAccessService = userArrayDataAccessService;
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     public List<User> getUsers() {
-        return userArrayDataAccessService.getUsers();
+        return userDao.getUsers();
     }
 
     public User getUserById(String userId) throws IllegalArgumentException {

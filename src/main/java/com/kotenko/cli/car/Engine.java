@@ -1,4 +1,4 @@
-package main.java.com.kotenko.cli.car;
+package com.kotenko.cli.car;
 
 public enum Engine {
     PETROL, ELECTRIC

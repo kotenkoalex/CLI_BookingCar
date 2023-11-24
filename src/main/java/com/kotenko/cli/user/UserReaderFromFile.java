@@ -1,6 +1,7 @@
-package main.java.com.kotenko.cli.user;
+package com.kotenko.cli.user;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,9 +13,9 @@ import java.util.stream.Stream;
 
 public class UserReaderFromFile implements IUserReader {
     @Override
-    public List<User> readUsers(String path) {
+    public List<User> readUsers(File file) {
         List<User> users = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String[] lines;
             String line;
             while ((line = reader.readLine()) != null) {
