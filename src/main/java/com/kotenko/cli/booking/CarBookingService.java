@@ -5,6 +5,7 @@ import com.kotenko.cli.car.CarService;
 import com.kotenko.cli.user.User;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -27,30 +28,30 @@ public class CarBookingService {
         return null;
     }
 
-    public CarBooking[] getCarBookings() {
-        CarBooking[] carBookings = carBookingDao.getCarBookings()
+    public List<CarBooking> getCarBookings() {
+        List<CarBooking> carBookings = carBookingDao.getCarBookings()
                 .stream()
                 .filter(Objects::nonNull)
-                .toArray(CarBooking[]::new);
-        if (carBookings.length == 0) {
+                .toList();
+        if (carBookings.size() == 0) {
             System.out.println("No bookings available");
         }
-        return carBookingDao.getCarBookings().toArray(CarBooking[]::new);
+        return carBookingDao.getCarBookings();
     }
 
-    public Car[] getAvailableCars() {
-        UUID[] bookedCarIds = carBookingDao.getCarBookings()
+    public List<Car> getAvailableCars() {
+        List<UUID> bookedCarIds = carBookingDao.getCarBookings()
                 .stream()
                 .map(it -> it != null ? it.getCar().getId() : null)
                 .filter(Objects::nonNull)
-                .toArray(UUID[]::new);
+                .toList();
         return carService.getCars()
                 .stream()
                 .filter(it -> !containsId(bookedCarIds, it.getId()))
-                .toArray(Car[]::new);
+                .toList();
     }
 
-    private boolean containsId(UUID[] bookedCarIds, UUID id) {
+    private boolean containsId(List<UUID> bookedCarIds, UUID id) {
         for (UUID bookedCarId : bookedCarIds) {
             if (bookedCarId != null && bookedCarId.equals(id)) {
                 return true;
@@ -59,12 +60,12 @@ public class CarBookingService {
         return false;
     }
 
-    public User[] getAllUserBookedCars() {
+    public List<User> getAllUserBookedCars() {
         return carBookingDao.getCarBookings()
                 .stream()
                 .filter(Objects::nonNull)
                 .map(CarBooking::getUser)
                 .distinct()
-                .toArray(User[]::new);
+                .toList();
     }
 }
