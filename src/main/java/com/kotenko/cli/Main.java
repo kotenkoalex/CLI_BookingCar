@@ -10,14 +10,10 @@ import com.kotenko.cli.car.CarService;
 import com.kotenko.cli.car.Engine;
 import com.kotenko.cli.user.*;
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-//        File file = new File(Main.class.getClassLoader().getResource("users.csv").getPath());
-//        UserDao users = new UserArrayDataAccessService(new UserReaderFromFile(), file);
         UserDao users = new UserFakerDataAccessService();
         UserService userService = new UserService(users);
         CarDao cars = new CarArrayDataAccessService();
@@ -67,10 +63,9 @@ public class Main {
     }
 
     private static void viewAllUserBookedCars(CarBookingService carBookingService) {
-        User[] allUserBookedCars = carBookingService.getAllUserBookedCars();
+        List<User> allUserBookedCars = carBookingService.getAllUserBookedCars();
         if (containsNotNullElement(allUserBookedCars)) {
-            Arrays
-                    .stream(allUserBookedCars)
+            allUserBookedCars.stream()
                     .filter(Objects::nonNull)
                     .forEach(System.out::println);
         } else {
@@ -79,30 +74,24 @@ public class Main {
         System.out.println();
     }
 
-    private static boolean containsNotNullElement(User[] allUserBookedCars) {
-        return Arrays
-                .stream(allUserBookedCars)
-                .anyMatch(Objects::nonNull);
+    private static boolean containsNotNullElement(List<User> allUserBookedCars) {
+        return allUserBookedCars.stream().anyMatch(Objects::nonNull);
     }
 
     private static void viewAllBookings(CarBookingService carBookings) {
-        Arrays
-                .stream(carBookings.getCarBookings())
+        carBookings.getCarBookings().stream()
                 .filter(Objects::nonNull)
                 .forEach(System.out::println);
         System.out.println();
     }
 
     private static void viewAvailableCars(CarBookingService carBookings) {
-        Arrays
-                .stream(carBookings.getAvailableCars())
-                .forEach(System.out::println);
+        carBookings.getAvailableCars().forEach(System.out::println);
         System.out.println();
     }
 
     private static void viewAvailableElectricCars(CarBookingService carBookings) {
-        Arrays
-                .stream(carBookings.getAvailableCars())
+        carBookings.getAvailableCars().stream()
                 .filter(availableCar -> availableCar.getEngine() == Engine.ELECTRIC)
                 .forEach(System.out::println);
         System.out.println();
