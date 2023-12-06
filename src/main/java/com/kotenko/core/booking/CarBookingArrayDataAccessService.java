@@ -1,4 +1,4 @@
-package com.kotenko.cli.booking;
+package com.kotenko.core.booking;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,26 +1,22 @@
 package com.kotenko.cli;
 
-import com.kotenko.cli.booking.CarBooking;
-import com.kotenko.cli.booking.CarBookingArrayDataAccessService;
-import com.kotenko.cli.booking.CarBookingDao;
-import com.kotenko.cli.booking.CarBookingService;
-import com.kotenko.cli.car.CarArrayDataAccessService;
-import com.kotenko.cli.car.CarDao;
-import com.kotenko.cli.car.CarService;
-import com.kotenko.cli.car.Engine;
-import com.kotenko.cli.user.*;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.kotenko.core.booking.CarBooking;
+import com.kotenko.core.booking.CarBookingArrayDataAccessService;
+import com.kotenko.core.booking.CarBookingDao;
+import com.kotenko.core.booking.CarBookingService;
+import com.kotenko.core.car.CarArrayDataAccessService;
+import com.kotenko.core.car.CarDao;
+import com.kotenko.core.car.CarService;
+import com.kotenko.core.car.Engine;
+import com.kotenko.core.user.User;
+import com.kotenko.core.user.UserDao;
+import com.kotenko.core.user.UserFakerDataAccessService;
+import com.kotenko.core.user.UserService;
 
 import java.util.*;
 
-@SpringBootApplication
-@RestController
-public class Main {
+public class CommandLineApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
         UserDao users = new UserFakerDataAccessService();
         UserService userService = new UserService(users);
         CarDao cars = new CarArrayDataAccessService();
@@ -46,13 +42,6 @@ public class Main {
                 default -> System.out.println("Wrong option\n");
             }
         }
-    }
-
-    @GetMapping("/api/users")
-    public List<User> getUsers() {
-        UserDao dao = new UserFakerDataAccessService();
-        UserService service = new UserService(dao);
-        return service.getUsers();
     }
 
     private static void bookCar(UserService userService, CarService carService, CarBookingService carBookingService) {
