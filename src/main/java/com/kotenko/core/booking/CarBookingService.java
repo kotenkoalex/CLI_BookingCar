@@ -1,8 +1,8 @@
-package com.kotenko.cli.booking;
+package com.kotenko.core.booking;
 
-import com.kotenko.cli.car.Car;
-import com.kotenko.cli.car.CarService;
-import com.kotenko.cli.user.User;
+import com.kotenko.core.car.Car;
+import com.kotenko.core.car.CarService;
+import com.kotenko.core.user.User;
 
 import java.time.LocalDateTime;
 import java.util.List;

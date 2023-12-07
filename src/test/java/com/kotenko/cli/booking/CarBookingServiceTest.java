@@ -1,7 +1,11 @@
 package com.kotenko.cli.booking;
 
-import com.kotenko.cli.car.*;
-import com.kotenko.cli.user.User;
+import com.kotenko.core.booking.CarBooking;
+import com.kotenko.core.booking.CarBookingArrayDataAccessService;
+import com.kotenko.core.booking.CarBookingDao;
+import com.kotenko.core.booking.CarBookingService;
+import com.kotenko.core.car.*;
+import com.kotenko.core.user.User;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
