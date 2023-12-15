@@ -1,4 +1,4 @@
-package com.kotenko.core.car;
+package com.kotenko.car;
 
 public enum Engine {
     PETROL, ELECTRIC

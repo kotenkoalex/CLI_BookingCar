@@ -1,11 +1,11 @@
 package com.kotenko.cli.booking;
 
-import com.kotenko.core.booking.CarBooking;
-import com.kotenko.core.booking.CarBookingArrayDataAccessService;
-import com.kotenko.core.car.Brand;
-import com.kotenko.core.car.Car;
-import com.kotenko.core.car.Engine;
-import com.kotenko.core.user.User;
+import com.kotenko.booking.CarBooking;
+import com.kotenko.booking.CarBookingArrayDataAccessService;
+import com.kotenko.car.Brand;
+import com.kotenko.car.Car;
+import com.kotenko.car.Engine;
+import com.kotenko.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

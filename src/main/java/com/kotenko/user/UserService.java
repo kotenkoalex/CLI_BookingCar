@@ -1,4 +1,4 @@
-package com.kotenko.core.user;
+package com.kotenko.user;
 
 import java.util.List;
 import java.util.UUID;

@@ -1,6 +1,6 @@
 package com.kotenko.cli.user;
 
-import com.kotenko.core.user.UserReaderFromFile;
+import com.kotenko.user.UserReaderFromFile;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

@@ -1,8 +1,8 @@
 package com.kotenko.cli.user;
 
-import com.kotenko.core.user.UserDao;
-import com.kotenko.core.user.UserFakerDataAccessService;
-import com.kotenko.core.user.UserService;
+import com.kotenko.user.UserDao;
+import com.kotenko.user.UserFakerDataAccessService;
+import com.kotenko.user.UserService;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
