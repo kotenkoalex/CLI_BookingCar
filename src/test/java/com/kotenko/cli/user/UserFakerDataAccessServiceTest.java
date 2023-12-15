@@ -1,6 +1,6 @@
 package com.kotenko.cli.user;
 
-import com.kotenko.core.user.UserFakerDataAccessService;
+import com.kotenko.user.UserFakerDataAccessService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

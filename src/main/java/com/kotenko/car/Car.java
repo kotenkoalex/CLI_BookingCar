@@ -1,4 +1,4 @@
-package com.kotenko.core.car;
+package com.kotenko.car;
 
 import java.util.Objects;
 import java.util.UUID;

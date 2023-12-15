@@ -1,4 +1,4 @@
-package com.kotenko.core.user;
+package com.kotenko.user;
 
 import java.io.File;
 import java.util.List;

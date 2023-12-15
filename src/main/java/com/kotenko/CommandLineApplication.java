@@ -1,17 +1,17 @@
-package com.kotenko.cli;
+package com.kotenko;
 
-import com.kotenko.core.booking.CarBooking;
-import com.kotenko.core.booking.CarBookingArrayDataAccessService;
-import com.kotenko.core.booking.CarBookingDao;
-import com.kotenko.core.booking.CarBookingService;
-import com.kotenko.core.car.CarArrayDataAccessService;
-import com.kotenko.core.car.CarDao;
-import com.kotenko.core.car.CarService;
-import com.kotenko.core.car.Engine;
-import com.kotenko.core.user.User;
-import com.kotenko.core.user.UserDao;
-import com.kotenko.core.user.UserFakerDataAccessService;
-import com.kotenko.core.user.UserService;
+import com.kotenko.booking.CarBooking;
+import com.kotenko.booking.CarBookingArrayDataAccessService;
+import com.kotenko.booking.CarBookingDao;
+import com.kotenko.booking.CarBookingService;
+import com.kotenko.car.CarArrayDataAccessService;
+import com.kotenko.car.CarDao;
+import com.kotenko.car.CarService;
+import com.kotenko.car.Engine;
+import com.kotenko.user.User;
+import com.kotenko.user.UserDao;
+import com.kotenko.user.UserFakerDataAccessService;
+import com.kotenko.user.UserService;
 
 import java.util.*;
 

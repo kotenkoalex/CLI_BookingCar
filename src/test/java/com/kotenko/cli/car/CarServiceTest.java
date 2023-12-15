@@ -1,8 +1,8 @@
 package com.kotenko.cli.car;
 
-import com.kotenko.core.car.CarArrayDataAccessService;
-import com.kotenko.core.car.CarDao;
-import com.kotenko.core.car.CarService;
+import com.kotenko.car.CarArrayDataAccessService;
+import com.kotenko.car.CarDao;
+import com.kotenko.car.CarService;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
