@@ -61,6 +61,8 @@ public class CommandLineApplication {
             System.out.println(carBooking);
         } catch (IllegalArgumentException e) {
             System.out.println("Incorrect id, try again");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         System.out.println();
     }

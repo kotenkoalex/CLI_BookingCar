@@ -18,14 +18,15 @@ public class CarBookingService {
         this.carService = carService;
     }
 
-    public CarBooking bookCar(User user, Car car) {
+    public CarBooking bookCar(User user, Car car) throws Exception {
         CarBooking carBooking;
         if (user != null && car != null) {
             carBooking = new CarBooking(UUID.randomUUID(), user, car, LocalDateTime.now());
             carBookingDao.book(carBooking);
-            return carBooking;
+        } else {
+            throw new Exception("Car has not been booked");
         }
-        return null;
+        return carBooking;
     }
 
     public List<CarBooking> getCarBookings() {
